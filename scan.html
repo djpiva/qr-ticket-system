@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leitor QR Code</title>
+  <script src="https://unpkg.com/html5-qrcode"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 30px; }
+    #reader { width: 300px; margin: auto; }
+    a { text-decoration: none; color: blue; }
+  </style>
+</head>
+<body>
+  <h2>Escaneie o ingresso</h2>
+  <div id="reader"></div>
+  <p id="resultado"></p>
+
+  <script>
+    function onScanSuccess(qrMessage) {
+      document.getElementById('resultado').innerHTML =
+        `<b>QR Lido:</b> <a href="${qrMessage}" target="_blank">${qrMessage}</a>`;
+      html5QrcodeScanner.clear();
+      window.location.href = qrMessage;
+    }
+
+    function onScanError(errorMessage) {}
+
+    let html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+    html5QrcodeScanner.render(onScanSuccess, onScanError);
+  </script>
+</body>
+</html>

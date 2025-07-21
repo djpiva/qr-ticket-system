@@ -1,0 +1,12 @@
+<h2>Painel de Ingressos</h2>
+<table border="1" cellpadding="5">
+    <tr><th>Nome</th><th>Email</th><th>Usado?</th><th>Ação</th></tr>
+    {% for id, nome, email, usado in ingressos %}
+        <tr>
+            <td>{{ nome }}</td>
+            <td>{{ email }}</td>
+            <td>{{ 'Sim' if usado else 'Não' }}</td>
+            <td><a href="/validar/{{ id }}">Validar</a></td>
+        </tr>
+    {% endfor %}
+</table>
